@@ -53,6 +53,7 @@ public class Limb : MonoBehaviour
     private bool onGround = true;
     private float jumpVelocity = 0f;
     private float gravity = -9.8f;
+    private bool jumpHeld = false;
 
     private void Awake()
     {
@@ -276,6 +277,12 @@ public class Limb : MonoBehaviour
             {
                 currentState = State.Walking;
             }
+
+            if (jumpHeld && currentState == State.Walking)
+            {
+                TryStartJump();// immediately jump again if the key is still held
+            }
+
         }
     }
 
@@ -288,6 +295,7 @@ public class Limb : MonoBehaviour
         }
     }
 
+    //Same function for both since leap is just jumping but with x axis movement
     private void PerformJumpOrLeap()
     {
         // Apply vertical velocity
@@ -341,14 +349,25 @@ public class Limb : MonoBehaviour
         FlipModel(); //flip to face right
     }
 
-    //Jump straight up
-    private void JumpModel(InputAction.CallbackContext context)
+    private void StartJumpHold(InputAction.CallbackContext context)
+    {
+        jumpHeld = true;
+        TryStartJump(); //begin first jump immediately
+    }
+
+    private void StopJumpHold(InputAction.CallbackContext context)
+    {
+        jumpHeld = false; //stop queueing new jumps
+    }
+
+    //Tries to jump again when QUT Jr lands on the ground and the w key is held down still
+    private void TryStartJump()
     {
         if (!onGround || currentState != State.Walking) return;
 
         currentState = State.Jumping;
         onGround = false;
-        jumpVelocity = 5f; //adjust jump power
+        jumpVelocity = 5f;
     }
 
     //Leap forward
@@ -383,7 +402,8 @@ public class Limb : MonoBehaviour
         // zKey.Enable();
 
         //Trigger events
-        wKey.performed += JumpModel;
+        wKey.started  += StartJumpHold; //Account for press and hold
+        wKey.canceled += StopJumpHold;
         aKey.performed += FlipLeft;
         sKey.performed += LeapModel;
         dKey.performed += FlipRight;
@@ -400,7 +420,8 @@ public class Limb : MonoBehaviour
         // zKey.Disable();
 
         //Stop triggering events
-        wKey.performed -= JumpModel;
+        wKey.started  -= StartJumpHold; //Account for press and hold
+        wKey.canceled -= StopJumpHold;
         aKey.performed -= FlipLeft;
         sKey.performed -= LeapModel;
         dKey.performed -= FlipRight;
