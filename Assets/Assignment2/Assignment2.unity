@@ -166,7 +166,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Limb
   child: {fileID: 895515102}
-  control: {fileID: 0}
   defaultAngle: -1.4
   initialJointLocation: {x: 0, y: 1}
   limbVertices:
@@ -210,6 +209,15 @@ MonoBehaviour:
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: f42d9c92-d0ff-4c5d-8f2d-d9fbdc3ad06a
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  zKey:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: ef714506-7485-4d2d-834f-c0028c0c40d1
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -334,7 +342,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Limb
   child: {fileID: 449890372}
-  control: {fileID: 0}
   defaultAngle: 0
   initialJointLocation: {x: 0, y: 0}
   limbVertices:
@@ -412,6 +419,23 @@ MonoBehaviour:
       m_Processors: 
       m_Groups: 
       m_Action: D Key
+      m_Flags: 0
+    m_Flags: 0
+  zKey:
+    m_Name: Z Key
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: e4f247be-7083-48e8-9524-7f7881db5aa9
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: edd47951-765d-4a1e-b6a0-603e0fd5a6a4
+      m_Path: <Keyboard>/z
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Z Key
       m_Flags: 0
     m_Flags: 0
 --- !u!50 &296714055
@@ -798,7 +822,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Limb
   child: {fileID: 159609746}
-  control: {fileID: 0}
   defaultAngle: 0.85
   initialJointLocation: {x: 0, y: 0}
   limbVertices:
@@ -842,6 +865,15 @@ MonoBehaviour:
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: cecbf615-d477-4dcc-8526-4cef7335a571
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  zKey:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: f259a03b-4617-41c6-a59f-eb0447731af0
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -1015,7 +1047,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Limb
   child: {fileID: 0}
-  control: {fileID: 0}
   defaultAngle: -1
   initialJointLocation: {x: 0, y: 1}
   limbVertices:
@@ -1059,6 +1090,15 @@ MonoBehaviour:
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: 6e6b3e85-691b-45a6-8154-e6c4dc9e2611
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  zKey:
+    m_Name: Z Key
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: b047814b-9f20-45b4-ab14-950d73eb8874
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []

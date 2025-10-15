@@ -43,7 +43,7 @@ public class Limb : MonoBehaviour
     [SerializeField] private InputAction aKey;
     [SerializeField] private InputAction sKey;
     [SerializeField] private InputAction dKey;
-    //[SerializeField] private InputAction zKey;
+    [SerializeField] private InputAction zKey;
 
     //Movement state of the model
     private enum State { Walking, Jumping, Leaping, Falling, Collapsed, Rising}
@@ -54,6 +54,8 @@ public class Limb : MonoBehaviour
     private float jumpVelocity = 0f;
     private float gravity = -9.8f;
     private bool jumpHeld = false;
+
+    private float collapseSpeed = 1.5f;
 
     private void Awake()
     {
@@ -373,6 +375,7 @@ public class Limb : MonoBehaviour
     //Leap forward
     private void LeapModel(InputAction.CallbackContext context)
     {
+        Debug.Log($"[LeapModel] onGround={onGround} state={currentState}");
         if (!onGround || currentState != State.Walking) return;
 
         currentState = State.Leaping;
@@ -381,10 +384,10 @@ public class Limb : MonoBehaviour
     }
 
     //Collapse and get back up
-    // private void Fall(InputAction.CallbackContext context)
-    // {
-
-    // }
+    private void Fall(InputAction.CallbackContext context)
+    {
+        StartCoroutine(CollapseModelSimple());
+    }
 
 
     //Applies rotation to limb to put it in it's default pose
@@ -399,7 +402,7 @@ public class Limb : MonoBehaviour
         aKey.Enable();
         sKey.Enable();
         dKey.Enable();
-        // zKey.Enable();
+        zKey.Enable();
 
         //Trigger events
         wKey.started  += StartJumpHold; //Account for press and hold
@@ -407,7 +410,7 @@ public class Limb : MonoBehaviour
         aKey.performed += FlipLeft;
         sKey.performed += LeapModel;
         dKey.performed += FlipRight;
-        // zKey.performed += Fall;           
+        zKey.performed += Fall;           
     }
 
     private void OnDisable()
@@ -417,7 +420,7 @@ public class Limb : MonoBehaviour
         aKey.Disable();
         sKey.Disable();
         dKey.Disable();
-        // zKey.Disable();
+        zKey.Disable();
 
         //Stop triggering events
         wKey.started  -= StartJumpHold; //Account for press and hold
@@ -425,7 +428,7 @@ public class Limb : MonoBehaviour
         aKey.performed -= FlipLeft;
         sKey.performed -= LeapModel;
         dKey.performed -= FlipRight;
-        // zKey.performed -= Fall;
+        zKey.performed -= Fall;
     }
     
     //Disable inputs (wont stop events etc)
@@ -435,7 +438,7 @@ public class Limb : MonoBehaviour
         aKey.Disable();
         sKey.Disable();
         dKey.Disable();
-        // zKey.Disable();
+        zKey.Disable();
     }
 
     //Enable inputs
@@ -445,7 +448,171 @@ public class Limb : MonoBehaviour
         aKey.Enable();
         sKey.Enable();
         dKey.Enable();
-        // zKey.Enable();
+        zKey.Enable();
     }
 
+    // direction helper: backwards rotation
+    private float BackwardDirection() => flipped ? -1f : 1f;
+
+    public IEnumerator CollapseModelSimple()
+    {
+        // --- Step 1: Disable control temporarily ---
+        DisableInputs();
+
+        bool wasWalking = walking;
+        walking = false;
+
+        // Remember if nodding was active anywhere and disable it globally
+        bool wasNodding = IsAnyLimbNodding();
+        DisableNoddingForAll();
+
+        // Reset ground contact flags before collapsing
+        ResetGroundContact(this);
+
+        // --- Step 2: Sequential collapse (skip base) ---
+        Limb current = this.child;
+        while (current != null)
+        {
+            yield return current.RotateUntilGrounded();
+            current = current.child;
+        }
+
+        yield return new WaitForSeconds(1f);
+
+        // --- Step 3: Restore normal behavior ---
+        yield return StartCoroutine(RiseModelSimple());
+    }
+
+    public IEnumerator RiseModelSimple()
+    {
+        // --- Step 1: Disable control during rise ---
+        DisableInputs();
+        walking = false;
+        DisableNoddingForAll();
+
+        // --- Step 2: Collect all limbs in order ---
+        Limb[] limbChain = GetAllLimbs();
+
+        // --- Step 3: Rise from last child back to base ---
+        for (int i = limbChain.Length - 1; i >= 0; i--)
+        {
+            yield return limbChain[i].RotateToDefault();
+        }
+
+        if (IsBaseLimb())
+        {
+            onGround = true;
+            jumpVelocity = 0f;
+        }
+
+        // --- Step 4: Restore normal behavior ---
+        currentState = State.Walking;
+        walking = true;
+        EnableNoddingForAll();
+        EnableInputs();
+    }
+
+    private Limb[] GetAllLimbs()
+    {
+        // count chain length first
+        int count = 0;
+        Limb temp = this;
+        while (temp != null)
+        {
+            count++;
+            temp = temp.child;
+        }
+
+        // collect limbs
+        Limb[] limbs = new Limb[count];
+        temp = this;
+        for (int i = 0; i < count; i++)
+        {
+            limbs[i] = temp;
+            temp = temp.child;
+        }
+
+        return limbs;
+    }
+
+    private IEnumerator RotateToDefault()
+    {
+        float angle = lastAngle;
+        float target = flipped ? -defaultAngle : defaultAngle; // account for flipping
+        float speed = collapseSpeed;
+
+        while (Mathf.Abs(angle - target) > 0.01f)
+        {
+            float step = Mathf.Sign(target - angle) * speed * Time.deltaTime;
+            angle += step;
+            RotateAroundPoint(jointLocation, angle);
+            yield return null;
+        }
+
+        // snap exactly to the target
+        RotateAroundPoint(jointLocation, target);
+        lastAngle = target;
+    }
+
+    // helper to clear onGround before collapse
+    private void ResetGroundContact(Limb limb)
+    {
+        limb.onGround = false;
+        if (limb.child != null)
+            ResetGroundContact(limb.child);
+    }
+
+    // rotate this single limb backward until its onGround becomes true (collision event)
+    private IEnumerator RotateUntilGrounded()
+    {
+        float angle = lastAngle;
+
+        // simple safety timeout (avoid infinite loop)
+        float timeout = 3f;
+        float timer = 0f;
+
+        while (!onGround && timer < timeout)
+        {
+            angle += BackwardDirection() * collapseSpeed * Time.deltaTime;
+            RotateAroundPoint(jointLocation, angle);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        // hold final angle
+        lastAngle = angle;
+    }
+
+    // Check recursively if any limb was nodding before collapse
+    private bool IsAnyLimbNodding()
+    {
+        if (nodding) return true;
+        if (child != null) return child.IsAnyLimbNodding();
+        return false;
+    }
+
+    // Disable nodding for this limb and all children
+    private void DisableNoddingForAll()
+    {
+        nodding = false;
+        if (child != null) child.DisableNoddingForAll();
+    }
+
+    // Re-enable nodding for this limb and all children that originally nod
+    // (in practice, just the head)
+    private void EnableNoddingForAll()
+    {
+        if (child != null) child.EnableNoddingForAll();
+
+        // Simple heuristic: head's GameObject is named "Head" (or similar)
+        if (gameObject.name.ToLower().Contains("head"))
+        {
+            nodding = true;
+        }
+    }
+
+
+    private bool IsBaseLimb() => transform.parent == null;
+
 }
+
