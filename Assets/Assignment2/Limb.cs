@@ -15,10 +15,10 @@ public class Limb : MonoBehaviour
     [SerializeField] private Vector2 initialJointLocation;
     private Vector2 jointLocation;
 
-    // Store the previous angle to undo
+    //Store the previous angle to undo
     private float lastAngle = 0;
 
-    // The corner positions of each limb
+    //The corner positions of each limb
     [SerializeField] private Vector3[] limbVertices = new Vector3[4];
     private Mesh mesh;
     [SerializeField] private Material material;
@@ -38,12 +38,22 @@ public class Limb : MonoBehaviour
     private int walkDirection = 1; //1 = right, -1 = left
     private bool flipped = false;//track direction
 
-    //Input keys
-    [SerializeField] private InputAction wKey;
+    //Input keys for original
+    [SerializeField] public InputAction wKey;
     [SerializeField] private InputAction aKey;
     [SerializeField] private InputAction sKey;
     [SerializeField] private InputAction dKey;
     [SerializeField] private InputAction zKey;
+
+    //Input keys for clone
+    [SerializeField] private InputAction upArrow;
+    [SerializeField] private InputAction leftArrow;
+    [SerializeField] private InputAction downArrow;
+    [SerializeField] private InputAction rightArrow;
+    [SerializeField] private InputAction rightCtrl;
+
+    [SerializeField] public bool useArrowInputs = false;
+
 
     //Movement state of the model
     private enum State { Walking, Jumping, Leaping, Falling, Rising}
@@ -72,13 +82,6 @@ public class Limb : MonoBehaviour
 
         //Store the starting angle so the nod oscillates around it
         nodBaseAngle = lastAngle;
-
-        //!!!!!!!!!!!!Alex, these walls are very temporary, just for the purpose of me seeing if it flips at the boundary!!!!!!!!!!!!!!!!
-        //!!!!!!!!!!! im not too sure if we need a wall but since ur making the ground I thought it might be easier for you to implement if we do (its a vertical ground pfft idk) I think it would be cool to have visually!!!!!!!
-        CreateWall(-10f); // left
-        CreateWall(10f);  // right
-        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
     }
 
     // Update is called once per frame
@@ -111,16 +114,7 @@ public class Limb : MonoBehaviour
 
     }
 
-    //Temporary!!!!! Remove before final version!!!!!! It doesnt follow the rule of no transform functions, and it uses vector 3 etc. Its purely for temp visual debugging!!!!
-    void CreateWall(float xPos)
-    {
-        GameObject wall = GameObject.CreatePrimitive(PrimitiveType.Quad);
-        wall.name = xPos < 0 ? "LeftWall" : "RightWall";
-        wall.transform.position = new Vector3(xPos, 0, 0);
-        wall.transform.localScale = new Vector3(0.2f, 10f, 1f);
-        wall.GetComponent<Renderer>().material.color = Color.red;
-    }
-
+    //draw limb
     private void DrawLimb()
     {
         mesh = gameObject.AddComponent<MeshFilter>().mesh;
@@ -138,8 +132,8 @@ public class Limb : MonoBehaviour
 
         mesh.triangles = new int[]
         {
-            0, 1, 2,  // first triangle
-            2, 3, 0   // second triangle
+            0, 1, 2,  //first triangle
+            2, 3, 0   //second triangle
         };
     }
 
@@ -531,61 +525,116 @@ public class Limb : MonoBehaviour
 
     private void OnEnable()
     {
-        //Enable inputs
-        EnableInputs(); 
+        EnableInputs();
 
-        //Trigger events
-        wKey.started  += StartJumpHold; //Account for press and hold
-        wKey.canceled += StopJumpHold;
-        aKey.performed += FlipLeft;
-        sKey.performed += LeapModel;
-        dKey.performed += FlipRight;
-        zKey.performed += Fall;           
-    }
-
-    private void OnDisable()
-    {
-        //Disable inputs
-        DisableInputs();
-
-        //Stop triggering events
-        wKey.started  -= StartJumpHold; //Account for press and hold
-        wKey.canceled -= StopJumpHold;
-        aKey.performed -= FlipLeft;
-        sKey.performed -= LeapModel;
-        dKey.performed -= FlipRight;
-        zKey.performed -= Fall;
-    }
-    
-    //Disable inputs (wont stop events)
-    private void DisableInputs()
-    {
-        wKey.Disable();
-        aKey.Disable();
-        sKey.Disable();
-        dKey.Disable();
-        zKey.Disable();
-    }
-
-    //Enable inputs
-    private void EnableInputs()
-    {
-        wKey.Enable();
-        aKey.Enable();
-        sKey.Enable();
-        dKey.Enable();
-        zKey.Enable();
-    }
-
-    //Clear onGround before collapse
-    private void ResetGroundContact(Limb limb)
-    {
-        limb.onGround = false;
-        if (limb.child != null)
+        if (useArrowInputs)
         {
-            ResetGroundContact(limb.child);
+            //Arrow scheme
+            upArrow.started += StartJumpHold;
+            upArrow.canceled += StopJumpHold;
+            leftArrow.performed += FlipLeft;
+            downArrow.performed += LeapModel;
+            rightArrow.performed += FlipRight;
+            rightCtrl.performed += Fall;
+        }
+        else
+        {
+            //WASD scheme
+            wKey.started += StartJumpHold;
+            wKey.canceled += StopJumpHold;
+            aKey.performed += FlipLeft;
+            sKey.performed += LeapModel;
+            dKey.performed += FlipRight;
+            zKey.performed += Fall;
         }
     }
 
-}
 
+    private void OnDisable()
+        {
+            //Disable inputs
+            DisableInputs();
+
+            //WASD
+            wKey.started -= StartJumpHold;
+            wKey.canceled -= StopJumpHold;
+            aKey.performed -= FlipLeft;
+            sKey.performed -= LeapModel;
+            dKey.performed -= FlipRight;
+            zKey.performed -= Fall;
+
+            //Arrows
+            upArrow.started -= StartJumpHold;
+            upArrow.canceled -= StopJumpHold;
+            leftArrow.performed -= FlipLeft;
+            downArrow.performed -= LeapModel;
+            rightArrow.performed -= FlipRight;
+            rightCtrl.performed -= Fall;
+        }
+
+
+    public void DisableInputs()
+        {
+            //WASD
+            wKey.Disable();
+            aKey.Disable();
+            sKey.Disable();
+            dKey.Disable();
+            zKey.Disable();
+
+            //Arrows (fix duplicates)
+            upArrow.Disable();
+            leftArrow.Disable();
+            downArrow.Disable();
+            rightArrow.Disable();  
+            rightCtrl.Disable();
+        }
+
+    public void EnableInputs()
+        {
+            if (useArrowInputs)
+            {
+                //Only arrows ON
+                upArrow.Enable();
+                leftArrow.Enable();
+                downArrow.Enable();
+                rightArrow.Enable();   
+                rightCtrl.Enable();
+
+                //WASD OFF
+                wKey.Disable();
+                aKey.Disable();
+                sKey.Disable();
+                dKey.Disable();
+                zKey.Disable();
+            }
+            else
+            {
+                //Only WASD ON
+                wKey.Enable();
+                aKey.Enable();
+                sKey.Enable();
+                dKey.Enable();
+                zKey.Enable();
+
+                //Arrows OFF
+                upArrow.Disable();
+                leftArrow.Disable();
+                downArrow.Disable();
+                rightArrow.Disable();  
+                rightCtrl.Disable();
+            }
+        }
+
+        //Clear onGround before collapse
+        private void ResetGroundContact(Limb limb)
+        {
+            limb.onGround = false;
+            if (limb.child != null)
+            {
+                ResetGroundContact(limb.child);
+            }
+        }
+    
+
+}

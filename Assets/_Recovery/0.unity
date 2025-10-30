@@ -119,6 +119,102 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &149790191
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 149790192}
+  - component: {fileID: 149790193}
+  m_Layer: 0
+  m_Name: Clone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &149790192
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 149790191}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.27926, y: 0, z: -1.98911}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &149790193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 149790191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8abc74145a1a4a149812dda0191a4aa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Clone
+  upArrow:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 0a19e8ac-8317-4556-ad2d-f3e66fad90eb
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  leftArrow:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: de9f5724-70ac-49b1-b680-8fe4cb6a2acf
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  downArrow:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: a131727b-aeec-403c-8555-dc421f65c679
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  rightArrow:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 6229db6c-ce47-4064-9e0c-4fa1dcab78d8
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  rightCtrl:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: df7b64fc-9593-47ba-93a2-45f55429bc75
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  objectNames:
+  - Head
+  - Lower Arm
+  - Upper Arm
+  - Base
+  - Ground
+  offset: {x: 0, y: 3, z: 0}
 --- !u!1 &159609744
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,228 +437,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!1 &194336101
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 194336105}
-  - component: {fileID: 194336104}
-  - component: {fileID: 194336103}
-  - component: {fileID: 194336102}
-  m_Layer: 0
-  m_Name: Upper Arm 2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!61 &194336102
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 194336101}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
---- !u!50 &194336103
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 194336101}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 1
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 7
---- !u!114 &194336104
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 194336101}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d794e85cc8d68034881caf1d0863e67a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Limb
-  child: {fileID: 999317595}
-  defaultAngle: 0.85
-  initialJointLocation: {x: 0, y: 0}
-  limbVertices:
-  - {x: -0.25, y: 0, z: 1}
-  - {x: -0.25, y: 1, z: 1}
-  - {x: 0.25, y: 1, z: 1}
-  - {x: 0.25, y: 0, z: 1}
-  material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  colour: {r: 0, g: 0.23553705, b: 1, a: 1}
-  nodding: 0
-  walking: 0
-  wKey:
-    m_Name: W Key
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 7edab488-f403-4777-bf0a-245489bb5836
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  aKey:
-    m_Name: A Key
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: b1d3275d-f0b0-40b6-8957-62760d6e12ff
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  sKey:
-    m_Name: S Key
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 83475392-2b9c-49e2-a432-cffb0222de8d
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  dKey:
-    m_Name: D Key
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: cecbf615-d477-4dcc-8526-4cef7335a571
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  zKey:
-    m_Name: Z Key
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: f259a03b-4617-41c6-a59f-eb0447731af0
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  upArrow:
-    m_Name: Up Arrow
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 9f5aedf7-5755-4448-92bb-4c92c6e41b64
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  leftArrow:
-    m_Name: Left Arrow
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: a9a8169a-1b99-4029-ab9f-deecfa5c7184
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  downArrow:
-    m_Name: Down Arrow
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 48be0420-c37d-4dab-acb0-ff0257937c3b
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  rightArrow:
-    m_Name: Right Arrow
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: de3888ba-068f-4550-ae7f-3fc5b6003ea0
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  rightCtrl:
-    m_Name: Right Ctrl
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 60deb742-7cfd-48b6-804d-12648959eaf2
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  useArrowInputs: 0
---- !u!4 &194336105
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 194336101}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &296714052
 GameObject:
   m_ObjectHideFlags: 0
@@ -869,7 +743,6 @@ GameObject:
   - component: {fileID: 330585545}
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
-  - component: {fileID: 330585548}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -995,26 +868,6 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
---- !u!114 &330585548
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 330585543}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16457fc97555d4a479888fb7098940f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CameraAutoZoomIGB
-  box1: {fileID: 296714056}
-  box2: {fileID: 960127848}
-  worldPadding: 1
-  minOrthoSize: 2
-  minDistance: 4
-  useSmoothing: 1
-  moveSmooth: 5
-  zoomSmooth: 5
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1517,7 +1370,7 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   upArrow:
-    m_Name: Up Arrow
+    m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: 08a45dd9-0f24-4c32-8f74-528f46038a62
@@ -1526,7 +1379,7 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   leftArrow:
-    m_Name: Left Arrow
+    m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: 30247f3a-7921-48bb-923e-40bab5c82da9
@@ -1535,7 +1388,7 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   downArrow:
-    m_Name: Down Arrow
+    m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: 04ede9f5-750f-4d2f-a759-1c71b6f09346
@@ -1544,7 +1397,7 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   rightArrow:
-    m_Name: Right Arrow
+    m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: ad0b4cb8-e496-40a6-84fd-1ccc1b234ecf
@@ -1553,7 +1406,7 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   rightCtrl:
-    m_Name: Right Ctrl
+    m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: aad993db-d639-45b0-9e35-da916a6bce2a
@@ -1635,530 +1488,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!1 &960127847
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 960127851}
-  - component: {fileID: 960127850}
-  - component: {fileID: 960127849}
-  - component: {fileID: 960127848}
-  m_Layer: 0
-  m_Name: Base2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!61 &960127848
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 960127847}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
---- !u!50 &960127849
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 960127847}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 1
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 7
---- !u!114 &960127850
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 960127847}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d794e85cc8d68034881caf1d0863e67a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Limb
-  child: {fileID: 194336104}
-  defaultAngle: 0
-  initialJointLocation: {x: 0, y: 0}
-  limbVertices:
-  - {x: -1, y: -0.5, z: 1}
-  - {x: -1, y: 0, z: 1}
-  - {x: 1, y: 0, z: 1}
-  - {x: 1, y: -0.5, z: 1}
-  material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  colour: {r: 0, g: 1, b: 0.31141925, a: 1}
-  nodding: 0
-  walking: 1
-  wKey:
-    m_Name: W Key
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 99c38444-a553-46c0-bed1-e06813a32ae1
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 9903f719-4d66-45c2-93d9-0a08fc071749
-      m_Path: <Keyboard>/w
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: W Key
-      m_Flags: 0
-    m_Flags: 0
-  aKey:
-    m_Name: A Key
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: d97f2dc0-4bda-4de0-b60a-5c1d574b424c
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 4aca78b0-107a-43b0-82e6-22e6531c2cf3
-      m_Path: <Keyboard>/a
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: A Key
-      m_Flags: 0
-    m_Flags: 0
-  sKey:
-    m_Name: S Key
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: dcfc136a-3074-4ecf-805c-cf1ad3fc5e56
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 18861b6e-7270-4a3b-89ce-7bc656679963
-      m_Path: <Keyboard>/s
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: S Key
-      m_Flags: 0
-    m_Flags: 0
-  dKey:
-    m_Name: D Key
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 3c22e189-7f0a-46a1-9e96-d7c72cb53da2
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: f80ee2b0-cefc-4318-a8dc-cb157c863221
-      m_Path: <Keyboard>/d
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: D Key
-      m_Flags: 0
-    m_Flags: 0
-  zKey:
-    m_Name: Z Key
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: e4f247be-7083-48e8-9524-7f7881db5aa9
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: edd47951-765d-4a1e-b6a0-603e0fd5a6a4
-      m_Path: <Keyboard>/z
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Z Key
-      m_Flags: 0
-    m_Flags: 0
-  upArrow:
-    m_Name: Up Arrow
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: ad78172f-e857-48ff-900a-966c887501c1
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: da168bb3-e1ad-4b57-89f3-6ccecfd46623
-      m_Path: <Keyboard>/upArrow
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Up Arrow
-      m_Flags: 0
-    m_Flags: 0
-  leftArrow:
-    m_Name: Left Arrow
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: c22632af-410c-46fb-906f-dbaf6e03616b
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 4f1428c8-abe4-4b28-92ef-adadd729e383
-      m_Path: <Keyboard>/leftArrow
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Left Arrow
-      m_Flags: 0
-    m_Flags: 0
-  downArrow:
-    m_Name: Down Arrow
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 240fc39c-100c-459b-ab46-7f3855088609
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: ed86a8a3-11d1-473e-8632-22c179f9c7c2
-      m_Path: <Keyboard>/downArrow
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Down Arrow
-      m_Flags: 0
-    m_Flags: 0
-  rightArrow:
-    m_Name: Right Arrow
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 31e67e76-e502-48b1-a166-53dc4ba23414
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 08c40d05-f070-42a7-97b5-db3aec3a952a
-      m_Path: <Keyboard>/rightArrow
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Right Arrow
-      m_Flags: 0
-    m_Flags: 0
-  rightCtrl:
-    m_Name: Right Ctrl
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 72798726-b26a-431a-a5ab-dce3aa238441
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: bb431f97-f938-463d-abdf-8a60d0473e8a
-      m_Path: <Keyboard>/rightCtrl
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Right Ctrl
-      m_Flags: 0
-    m_Flags: 0
-  useArrowInputs: 1
---- !u!4 &960127851
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 960127847}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &999317592
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 999317596}
-  - component: {fileID: 999317595}
-  - component: {fileID: 999317594}
-  - component: {fileID: 999317593}
-  m_Layer: 0
-  m_Name: Lower Arm 2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!61 &999317593
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 999317592}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
---- !u!50 &999317594
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 999317592}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 1
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 7
---- !u!114 &999317595
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 999317592}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d794e85cc8d68034881caf1d0863e67a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Limb
-  child: {fileID: 2013091520}
-  defaultAngle: -1.4
-  initialJointLocation: {x: 0, y: 1}
-  limbVertices:
-  - {x: -0.25, y: 0, z: 1}
-  - {x: -0.25, y: 1, z: 1}
-  - {x: 0.25, y: 1, z: 1}
-  - {x: 0.25, y: 0, z: 1}
-  material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  colour: {r: 0, g: 0.060156107, b: 1, a: 1}
-  nodding: 0
-  walking: 0
-  wKey:
-    m_Name: W Key
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 637446a9-7458-46f8-9ecc-c08c8ff2f326
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  aKey:
-    m_Name: A Key
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: dd070c7a-9807-4307-ae45-0b8ae7b66527
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  sKey:
-    m_Name: S Key
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 0c09c127-8157-420d-92ae-fa479c6484e3
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  dKey:
-    m_Name: D Key
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: f42d9c92-d0ff-4c5d-8f2d-d9fbdc3ad06a
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  zKey:
-    m_Name: Z Key
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: ef714506-7485-4d2d-834f-c0028c0c40d1
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  upArrow:
-    m_Name: Up Arrow
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 46e6cb3b-0f0b-4c4f-a4a8-4478cfbde33e
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  leftArrow:
-    m_Name: Left Arrow
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: ead40014-5ef3-4ec0-817d-aecad7a357d5
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  downArrow:
-    m_Name: Down Arrow
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 770040ff-2d1a-4750-b9b5-c425ba04940b
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  rightArrow:
-    m_Name: Right Arrow
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 81bef25f-acdf-40e0-96de-931feceb7c98
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  rightCtrl:
-    m_Name: Right Ctrl
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: e7786edb-8ef7-4b81-8226-8f22d5555ce6
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  useArrowInputs: 0
---- !u!4 &999317596
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 999317592}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1335301452
 GameObject:
   m_ObjectHideFlags: 0
@@ -2236,7 +1565,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1000, y: 1}
+  m_Size: {x: 20, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &1335301455
 MonoBehaviour:
@@ -2257,228 +1586,6 @@ MonoBehaviour:
   - {x: 11, y: -1.5, z: 1}
   - {x: 11, y: -0.5, z: 1}
   - {x: -11, y: -0.5, z: 1}
---- !u!1 &2013091517
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2013091521}
-  - component: {fileID: 2013091520}
-  - component: {fileID: 2013091519}
-  - component: {fileID: 2013091518}
-  m_Layer: 0
-  m_Name: Head 2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!61 &2013091518
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2013091517}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
---- !u!50 &2013091519
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2013091517}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 1
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 7
---- !u!114 &2013091520
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2013091517}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d794e85cc8d68034881caf1d0863e67a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Limb
-  child: {fileID: 0}
-  defaultAngle: -1
-  initialJointLocation: {x: 0, y: 1}
-  limbVertices:
-  - {x: -0.25, y: 0, z: 1}
-  - {x: -0.5, y: 1, z: 1}
-  - {x: 0.5, y: 1, z: 1}
-  - {x: 0.25, y: 0, z: 1}
-  material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  colour: {r: 1, g: 0, b: 0.08512974, a: 1}
-  nodding: 1
-  walking: 0
-  wKey:
-    m_Name: W Key
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 36aed592-8d80-438d-aade-e98704198abb
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  aKey:
-    m_Name: A Key
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: b3c83d05-814e-4c92-85e6-daa0760f8454
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  sKey:
-    m_Name: S Key
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 1e15d7a1-3c18-4cc4-9c89-afbd5ab43e07
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  dKey:
-    m_Name: D Key
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 6e6b3e85-691b-45a6-8154-e6c4dc9e2611
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  zKey:
-    m_Name: Z Key
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: b047814b-9f20-45b4-ab14-950d73eb8874
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  upArrow:
-    m_Name: Up Arrow
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 08a45dd9-0f24-4c32-8f74-528f46038a62
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  leftArrow:
-    m_Name: Left Arrow
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 30247f3a-7921-48bb-923e-40bab5c82da9
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  downArrow:
-    m_Name: Down Arrow
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 04ede9f5-750f-4d2f-a759-1c71b6f09346
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  rightArrow:
-    m_Name: Right Arrow
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: ad0b4cb8-e496-40a6-84fd-1ccc1b234ecf
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  rightCtrl:
-    m_Name: Right Ctrl
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: aad993db-d639-45b0-9e35-da916a6bce2a
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  useArrowInputs: 0
---- !u!4 &2013091521
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2013091517}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -2487,11 +1594,8 @@ SceneRoots:
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 895515101}
-  - {fileID: 2013091521}
   - {fileID: 159609745}
-  - {fileID: 999317596}
   - {fileID: 449890371}
-  - {fileID: 194336105}
   - {fileID: 296714053}
-  - {fileID: 960127851}
   - {fileID: 1335301453}
+  - {fileID: 149790192}
