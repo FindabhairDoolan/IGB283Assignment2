@@ -2501,8 +2501,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ff25a72e2152174388b9da649429fa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Ground
-  material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  colour: {r: 0.8207547, g: 0.8207547, b: 0.8207547, a: 1}
+  material: {fileID: 2100000, guid: 761d01e369c501c4f8de3b98b8507190, type: 2}
+  colour: {r: 1, g: 1, b: 1, a: 1}
   groundVertices:
   - {x: -11, y: -1.5, z: 1}
   - {x: 11, y: -1.5, z: 1}
