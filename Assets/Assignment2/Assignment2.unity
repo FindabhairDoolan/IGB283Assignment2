@@ -176,7 +176,7 @@ MonoBehaviour:
   - {x: -0.25, y: 1, z: 1}
   - {x: 0.25, y: 1, z: 1}
   - {x: 0.25, y: 0, z: 1}
-  material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  material: {fileID: 2100000, guid: df05cc776738d7042b2c65f87addbd1c, type: 2}
   colour: {r: 0.5764706, g: 0.4392157, b: 0.8588236, a: 1}
   nodding: 0
   walking: 0
@@ -459,7 +459,7 @@ MonoBehaviour:
   - {x: -0.25, y: 1, z: 1}
   - {x: 0.25, y: 1, z: 1}
   - {x: 0.25, y: 0, z: 1}
-  material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  material: {fileID: 2100000, guid: df05cc776738d7042b2c65f87addbd1c, type: 2}
   colour: {r: 0, g: 0.41960785, b: 1, a: 1}
   nodding: 0
   walking: 0
@@ -626,7 +626,7 @@ MonoBehaviour:
   - {x: -1, y: 0, z: 1}
   - {x: 1, y: 0, z: 1}
   - {x: 1, y: -0.5, z: 1}
-  material: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  material: {fileID: 2100000, guid: df05cc776738d7042b2c65f87addbd1c, type: 2}
   colour: {r: 0.4, g: 0.2, b: 0.6, a: 1}
   nodding: 0
   walking: 1
@@ -1066,7 +1066,7 @@ MonoBehaviour:
   - {x: -0.25, y: 1, z: 1}
   - {x: 0.25, y: 1, z: 1}
   - {x: 0.25, y: 0, z: 1}
-  material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  material: {fileID: 2100000, guid: df05cc776738d7042b2c65f87addbd1c, type: 2}
   colour: {r: 0.5294118, g: 0.3647059, b: 0.87058824, a: 1}
   nodding: 1
   walking: 0
@@ -1278,7 +1278,7 @@ Light:
   serializedVersion: 11
   m_Type: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 2
+  m_Intensity: 5
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -1433,7 +1433,7 @@ MonoBehaviour:
   - {x: -0.25, y: 1, z: 1}
   - {x: 0.25, y: 1, z: 1}
   - {x: 0.25, y: 0, z: 1}
-  material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  material: {fileID: 2100000, guid: df05cc776738d7042b2c65f87addbd1c, type: 2}
   colour: {r: 0.5764706, g: 0.4392157, b: 0.8588236, a: 1}
   nodding: 0
   walking: 0
@@ -1707,7 +1707,7 @@ MonoBehaviour:
   - {x: -0.5, y: 1, z: 1}
   - {x: 0.5, y: 1, z: 1}
   - {x: 0.25, y: 0, z: 1}
-  material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  material: {fileID: 2100000, guid: df05cc776738d7042b2c65f87addbd1c, type: 2}
   colour: {r: 0.9333334, g: 0.8666667, b: 0.509804, a: 1}
   nodding: 1
   walking: 0
@@ -1990,7 +1990,7 @@ MonoBehaviour:
   - {x: -1, y: 0, z: 1}
   - {x: 1, y: 0, z: 1}
   - {x: 1, y: -0.5, z: 1}
-  material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  material: {fileID: 2100000, guid: df05cc776738d7042b2c65f87addbd1c, type: 2}
   colour: {r: 0, g: 0.41960785, b: 1, a: 1}
   nodding: 0
   walking: 1
@@ -2295,7 +2295,7 @@ MonoBehaviour:
   - {x: -0.25, y: 1, z: 1}
   - {x: 0.25, y: 1, z: 1}
   - {x: 0.25, y: 0, z: 1}
-  material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  material: {fileID: 2100000, guid: df05cc776738d7042b2c65f87addbd1c, type: 2}
   colour: {r: 0, g: 0.41960785, b: 1, a: 1}
   nodding: 0
   walking: 0
@@ -2502,7 +2502,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Ground
   material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  colour: {r: 0.36862746, g: 0.36862746, b: 0.36862746, a: 1}
+  colour: {r: 0.8207547, g: 0.8207547, b: 0.8207547, a: 1}
   groundVertices:
   - {x: -11, y: -1.5, z: 1}
   - {x: 11, y: -1.5, z: 1}
@@ -2558,7 +2558,7 @@ MonoBehaviour:
   - {x: -0.25, y: 1, z: 1}
   - {x: 0.25, y: 1, z: 1}
   - {x: 0.25, y: 0, z: 1}
-  material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  material: {fileID: 2100000, guid: df05cc776738d7042b2c65f87addbd1c, type: 2}
   colour: {r: 0, g: 0.21176471, b: 1, a: 1}
   nodding: 1
   walking: 0
@@ -2783,7 +2783,7 @@ MonoBehaviour:
   - {x: -0.25, y: 1, z: 1}
   - {x: 0.25, y: 1, z: 1}
   - {x: 0.25, y: 0, z: 1}
-  material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  material: {fileID: 2100000, guid: df05cc776738d7042b2c65f87addbd1c, type: 2}
   colour: {r: 0, g: 0.2085073, b: 1, a: 1}
   nodding: 1
   walking: 0
@@ -3081,7 +3081,7 @@ MonoBehaviour:
   - {x: -0.25, y: 1, z: 1}
   - {x: 0.25, y: 1, z: 1}
   - {x: 0.25, y: 0, z: 1}
-  material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  material: {fileID: 2100000, guid: df05cc776738d7042b2c65f87addbd1c, type: 2}
   colour: {r: 0.52908033, g: 0.36436453, b: 0.8679245, a: 1}
   nodding: 1
   walking: 0
@@ -3306,7 +3306,7 @@ MonoBehaviour:
   - {x: -0.5, y: 1, z: 1}
   - {x: 0.5, y: 1, z: 1}
   - {x: 0.25, y: 0, z: 1}
-  material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  material: {fileID: 2100000, guid: df05cc776738d7042b2c65f87addbd1c, type: 2}
   colour: {r: 1, g: 0, b: 0.08512974, a: 1}
   nodding: 1
   walking: 0
