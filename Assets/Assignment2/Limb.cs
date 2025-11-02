@@ -28,9 +28,9 @@ public class Limb : MonoBehaviour
 
     //Nodding parameters (only used by head)
     [SerializeField] private bool nodding = false;
-    private float nodAmplitude = 0.26f;//about 15 degrees in radians
-    private float nodSpeed = 4f; //how fast QUT Jr nods
-    private float nodBaseAngle; //base angle to oscillate around
+    private float nodAmplitude = 0.26f; //about 15 degrees in radians
+    private float nodSpeed = 4f;        //how fast QUT Jr nods
+    private float nodBaseAngle;         //base angle to oscillate around
 
     //Walking parameters (for base)
     [SerializeField] private bool walking = false;
@@ -38,7 +38,7 @@ public class Limb : MonoBehaviour
     private float leftBoundary = -10f;
     private float rightBoundary = 10f;
     private int walkDirection = 1; //1 = right, -1 = left
-    private bool flipped = false;//track direction
+    private bool flipped = false;  //track direction
 
     //Input keys for original
     [SerializeField] public InputAction wKey;
@@ -69,14 +69,14 @@ public class Limb : MonoBehaviour
 
     private void Awake()
     {
-        DrawLimb();
+        DrawLimb(); // build mesh + material
     }
 
     private IEnumerator Start()
     {
-        initialMove(initialJointLocation);
-        yield return null; //Ensure model is initialised properly before applying transformations
-        ApplyInitialRotation();
+        initialMove(initialJointLocation); // set joint origin
+        yield return null;                 // ensure init before transforms
+        ApplyInitialRotation();            // pose to default
 
         //Store the starting angle so the nod oscillates around it
         nodBaseAngle = lastAngle;
@@ -84,27 +84,31 @@ public class Limb : MonoBehaviour
 
     void Update()
     {
+        // head nod
         if (nodding)
         {
             float oscillation = Mathf.Sin(Time.time * nodSpeed) * nodAmplitude;
             RotateAroundPoint(jointLocation, nodBaseAngle + oscillation);
         }
 
+        // horizontal walk
         if (walking && currentState == State.Walking)
         {
             if ((walkDirection == 1 && flipped) || (walkDirection == -1 && !flipped))
             {
-                FlipModel();
+                FlipModel(); // keep facing direction of travel
             }
             Walk();
         }
 
+        // airborne motion
         if (currentState == State.Jumping || currentState == State.Leaping)
         {
             PerformJumpOrLeap();
         }
     }
 
+    // build quad mesh
     private void DrawLimb()
     {
         mesh = gameObject.AddComponent<MeshFilter>().mesh;
@@ -115,6 +119,7 @@ public class Limb : MonoBehaviour
         mesh.triangles = new int[] { 0, 1, 2, 2, 3, 0 };
     }
 
+    // apply transform to mesh, joint, children, collider
     private void ApplyTransformation(Matrix3x3 transformation)
     {
         Vector3[] vertices = mesh.vertices;
@@ -140,18 +145,21 @@ public class Limb : MonoBehaviour
         col.size = bounds.size;
     }
 
+    // translate to initial joint location
     private void initialMove(Vector2 offset)
     {
         Matrix3x3 t = IGB283Transform.Translate(offset);
         ApplyTransformation(t);
     }
 
+    // translate by vector
     private void Move(IGB283Vector offset)
     {
         Matrix3x3 t = IGB283Transform.Translate(offset);
         ApplyTransformation(t);
     }
 
+    // rotate about a pivot, undoing previous angle
     private void RotateAroundPoint(Vector2 point, float angle)
     {
         Matrix3x3 tInv = IGB283Transform.Translate(-point);
@@ -163,6 +171,7 @@ public class Limb : MonoBehaviour
         lastAngle = angle;
     }
 
+    // walk, flip at bounds
     private void Walk()
     {
         IGB283Vector offset = new IGB283Vector(walkSpeed * walkDirection * Time.deltaTime, 0f, 1f);
@@ -181,6 +190,7 @@ public class Limb : MonoBehaviour
         }
     }
 
+    // mirror across local X through joint; notify children
     private void FlipModel()
     {
         Matrix3x3 toOrigin = IGB283Transform.Translate(-jointLocation);
@@ -198,7 +208,7 @@ public class Limb : MonoBehaviour
         }
     }
 
-    //Flip all descendants
+    // propagate flip state + invert angles
     public void OnParentFlipped(bool isFlipped)
     {
         flipped = isFlipped;
@@ -211,6 +221,7 @@ public class Limb : MonoBehaviour
         }
     }
 
+    // ground contact -> reset vertical + walking state
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("Ground"))
@@ -230,6 +241,7 @@ public class Limb : MonoBehaviour
         }
     }
 
+    // left ground -> airborne
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("Ground"))
@@ -238,6 +250,7 @@ public class Limb : MonoBehaviour
         }
     }
 
+    // jump physics; leap adds horizontal + boundary flip
     private void PerformJumpOrLeap()
     {
         float deltaY = jumpVelocity * Time.deltaTime;
@@ -269,6 +282,7 @@ public class Limb : MonoBehaviour
         ApplyTransformation(IGB283Transform.Translate(moveVec));
     }
 
+    // face left
     private void FlipLeft(InputAction.CallbackContext context)
     {
         if (currentState != State.Walking || flipped) return;
@@ -276,6 +290,7 @@ public class Limb : MonoBehaviour
         FlipModel();
     }
 
+    // face right
     private void FlipRight(InputAction.CallbackContext context)
     {
         if (currentState != State.Walking || !flipped) return;
@@ -283,17 +298,20 @@ public class Limb : MonoBehaviour
         FlipModel();
     }
 
+    // hold to queue jump
     private void StartJumpHold(InputAction.CallbackContext context)
     {
         jumpHeld = true;
         TryStartJump();
     }
 
+    // release to stop queue
     private void StopJumpHold(InputAction.CallbackContext context)
     {
         jumpHeld = false;
     }
 
+    // jump if grounded + walking
     private void TryStartJump()
     {
         if (!onGround || currentState != State.Walking) return;
@@ -302,6 +320,7 @@ public class Limb : MonoBehaviour
         jumpVelocity = 5f;
     }
 
+    // leap forward if grounded + walking
     private void LeapModel(InputAction.CallbackContext context)
     {
         if (!onGround || currentState != State.Walking) return;
@@ -310,6 +329,7 @@ public class Limb : MonoBehaviour
         jumpVelocity = 5f;
     }
 
+    // trigger collapse
     private void Fall(InputAction.CallbackContext context)
     {
         if (onGround && currentState == State.Walking)
@@ -318,11 +338,13 @@ public class Limb : MonoBehaviour
         }
     }
 
+    // rotate to default pose
     private void ApplyInitialRotation()
     {
         RotateAroundPoint(jointLocation, defaultAngle);
     }
 
+    // fall chain then rise
     public IEnumerator CollapseModel()
     {
         currentState = State.Falling;
@@ -342,6 +364,7 @@ public class Limb : MonoBehaviour
         yield return StartCoroutine(RiseModel());
     }
 
+    // stand back up
     public IEnumerator RiseModel()
     {
         currentState = State.Rising;
@@ -365,7 +388,7 @@ public class Limb : MonoBehaviour
         currentState = State.Walking;
     }
 
-    //Rise last child first
+    // raise deepest child first
     private IEnumerator RiseRecursive()
     {
         //Go down limb hierarchy
@@ -376,7 +399,7 @@ public class Limb : MonoBehaviour
         yield return StartCoroutine(RotateToDefault());
     }
 
-    //Rotate this limb back to default pose
+    // ease to defaultAngle (flip-aware)
     private IEnumerator RotateToDefault()
     {
         float angle = lastAngle;
@@ -397,7 +420,7 @@ public class Limb : MonoBehaviour
         lastAngle = target;
     }
 
-    //Rotate this limb backward until it touches ground
+    // rotate backward until grounded or timeout
     private IEnumerator RotateUntilGrounded()
     {
         float angle = lastAngle;
@@ -420,7 +443,7 @@ public class Limb : MonoBehaviour
         lastAngle = angle;
     }
 
-    //Disable nodding for head limb
+    // disable nod for head limb
     private void DisableNodding()
     {
         if (child != null)
@@ -433,7 +456,7 @@ public class Limb : MonoBehaviour
         }
     }
 
-    //Enable nodding for head limb
+    // enable nod for head limb
     private void EnableNodding()
     {
         if (child != null)
@@ -446,13 +469,13 @@ public class Limb : MonoBehaviour
         }
     }
 
-
     private void OnEnable()
     {
-        EnableInputs();
+        EnableInputs(); // turn on the chosen input set
 
         if (useArrowInputs)
         {
+            // arrows
             upArrow.started += StartJumpHold;
             upArrow.canceled += StopJumpHold;
             leftArrow.performed += FlipLeft;
@@ -462,6 +485,7 @@ public class Limb : MonoBehaviour
         }
         else
         {
+            // WASD
             wKey.started += StartJumpHold;
             wKey.canceled += StopJumpHold;
             aKey.performed += FlipLeft;
@@ -473,7 +497,7 @@ public class Limb : MonoBehaviour
 
     private void OnDisable()
     {
-        DisableInputs();
+        DisableInputs(); // turn off both sets
 
         //WASD
         wKey.started -= StartJumpHold;
@@ -492,6 +516,7 @@ public class Limb : MonoBehaviour
         rightCtrl.performed -= Fall;
     }
 
+    // disable both input sets
     public void DisableInputs()
     {
         //WASD
@@ -509,6 +534,7 @@ public class Limb : MonoBehaviour
         rightCtrl.Disable();
     }
 
+    // enable selected set; disable the other
     public void EnableInputs()
     {
         if (useArrowInputs)
@@ -541,7 +567,7 @@ public class Limb : MonoBehaviour
         }
     }
 
-    //Clear onGround before collapse
+    // clear onGround down the chain before collapse
     private void ResetGroundContact(Limb limb)
     {
         limb.onGround = false;
