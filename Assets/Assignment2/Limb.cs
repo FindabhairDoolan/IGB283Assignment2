@@ -7,6 +7,9 @@ public class Limb : MonoBehaviour
     // Up to three child limbs (order matters for DFS ops)
     [SerializeField] private Limb[] children = new Limb[3];
 
+    //for fall over function
+    [SerializeField] private Limb child;
+
     //Default angle of each limb
     [SerializeField] private float defaultAngle = 0f;
 
@@ -328,15 +331,12 @@ public class Limb : MonoBehaviour
         DisableNodding();
         ResetGroundContact(this);
 
-        // Lower descendants deepest-first
-        foreach (var c in children)
+        Limb current = child;
+        while (current != null)
         {
-            if (c != null)
-                yield return c.RotateUntilGroundedRecursive();
+            yield return current.RotateUntilGrounded();
+            current = current.child;
         }
-
-        // Optionally lower self as well
-        yield return RotateUntilGrounded();
 
         yield return new WaitForSeconds(1f);
         yield return StartCoroutine(RiseModel());
@@ -349,9 +349,10 @@ public class Limb : MonoBehaviour
         walking = false;
         DisableNodding();
 
-        // Children up first (DFS), then self
+        //Start recursive rise limb rise
         yield return StartCoroutine(RiseRecursive());
 
+        //If is the base limb restore variables
         if (transform.parent == null)
         {
             onGround = true;
@@ -364,100 +365,87 @@ public class Limb : MonoBehaviour
         currentState = State.Walking;
     }
 
-    // DFS: children first, then this limb
+    //Rise last child first
     private IEnumerator RiseRecursive()
     {
-        foreach (var c in children)
-        {
-            if (c != null)
-                yield return StartCoroutine(c.RiseRecursive());
-        }
+        //Go down limb hierarchy
+        if (child != null)
+            yield return StartCoroutine(child.RiseRecursive());
 
+        //Rotate last child first
         yield return StartCoroutine(RotateToDefault());
     }
 
+    //Rotate this limb back to default pose
     private IEnumerator RotateToDefault()
     {
         float angle = lastAngle;
-        float target = flipped ? -defaultAngle : defaultAngle;
+        float target = flipped ? -defaultAngle : defaultAngle; //account for flipping
         float speed = collapseSpeed;
 
+        //Keep rotating upwards until pretty much back in default pose
         while (Mathf.Abs(angle - target) > 0.01f)
         {
             float step = Mathf.Sign(target - angle) * speed * Time.deltaTime;
             angle += step;
             RotateAroundPoint(jointLocation, angle);
-            yield return null;
+            yield return null; //Wait a frame for gradual rising
         }
 
+        //Ensure at default pose by snapping the rest of the way (should be close enough by now to be smooth)
         RotateAroundPoint(jointLocation, target);
         lastAngle = target;
     }
 
+    //Rotate this limb backward until it touches ground
     private IEnumerator RotateUntilGrounded()
     {
         float angle = lastAngle;
+
+        //timeout just in case infinite loop
         float timeout = 3f;
         float timer = 0f;
-        float backwardDirection = flipped ? -1f : 1f;
+        float backwardDirection = flipped ? -1f : 1f; //What direction is backwards
 
+        //Keep going backward until on the ground
         while (!onGround && timer < timeout)
         {
             angle += backwardDirection * collapseSpeed * Time.deltaTime;
             RotateAroundPoint(jointLocation, angle);
             timer += Time.deltaTime;
-            yield return null;
+            yield return null; //Wait a frame for gradual lowering
         }
 
+        //hold final angle
         lastAngle = angle;
     }
 
-    // DFS helper: deepest-first lowering for entire sub-tree
-    private IEnumerator RotateUntilGroundedRecursive()
-    {
-        foreach (var c in children)
-        {
-            if (c != null)
-                yield return c.RotateUntilGroundedRecursive();
-        }
-        yield return RotateUntilGrounded();
-    }
-
-    //Disable nodding for head limb (leaf toggles)
+    //Disable nodding for head limb
     private void DisableNodding()
     {
-        bool hasChild = false;
-        foreach (var c in children)
+        if (child != null)
         {
-            if (c != null)
-            {
-                hasChild = true;
-                c.DisableNodding();
-            }
+            child.DisableNodding();
         }
-        if (!hasChild)
+        else
         {
             nodding = false;
         }
     }
 
-    //Enable nodding for head limb (leaf toggles)
+    //Enable nodding for head limb
     private void EnableNodding()
     {
-        bool hasChild = false;
-        foreach (var c in children)
+        if (child != null)
         {
-            if (c != null)
-            {
-                hasChild = true;
-                c.EnableNodding();
-            }
+            child.EnableNodding();
         }
-        if (!hasChild)
+        else
         {
             nodding = true;
         }
     }
+
 
     private void OnEnable()
     {
@@ -557,9 +545,9 @@ public class Limb : MonoBehaviour
     private void ResetGroundContact(Limb limb)
     {
         limb.onGround = false;
-        foreach (var c in limb.children)
+        if (limb.child != null)
         {
-            if (c != null) ResetGroundContact(c);
+            ResetGroundContact(limb.child);
         }
     }
 }

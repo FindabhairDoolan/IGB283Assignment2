@@ -169,6 +169,7 @@ MonoBehaviour:
   - {fileID: 895515102}
   - {fileID: 1950852752}
   - {fileID: 385117594}
+  child: {fileID: 895515102}
   defaultAngle: -1.4
   initialJointLocation: {x: 0, y: 1}
   limbVertices:
@@ -452,6 +453,7 @@ MonoBehaviour:
   - {fileID: 999317595}
   - {fileID: 0}
   - {fileID: 0}
+  child: {fileID: 999317595}
   defaultAngle: 0.85
   initialJointLocation: {x: 0, y: 0}
   limbVertices:
@@ -619,6 +621,7 @@ MonoBehaviour:
   - {fileID: 449890372}
   - {fileID: 0}
   - {fileID: 0}
+  child: {fileID: 449890372}
   defaultAngle: 0
   initialJointLocation: {x: 0, y: 0}
   limbVertices:
@@ -1059,6 +1062,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  child: {fileID: 0}
   defaultAngle: 1.4
   initialJointLocation: {x: 0.05, y: 1}
   limbVertices:
@@ -1426,6 +1430,7 @@ MonoBehaviour:
   - {fileID: 159609746}
   - {fileID: 0}
   - {fileID: 0}
+  child: {fileID: 159609746}
   defaultAngle: 0.85
   initialJointLocation: {x: 0, y: 0}
   limbVertices:
@@ -1700,6 +1705,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  child: {fileID: 0}
   defaultAngle: -0.5
   initialJointLocation: {x: 0, y: 1.2}
   limbVertices:
@@ -1983,6 +1989,7 @@ MonoBehaviour:
   - {fileID: 194336104}
   - {fileID: 0}
   - {fileID: 0}
+  child: {fileID: 194336104}
   defaultAngle: 0
   initialJointLocation: {x: 0, y: 0}
   limbVertices:
@@ -2288,6 +2295,7 @@ MonoBehaviour:
   - {fileID: 2013091520}
   - {fileID: 1585613406}
   - {fileID: 1660246788}
+  child: {fileID: 2013091520}
   defaultAngle: -1.4
   initialJointLocation: {x: 0, y: 1}
   limbVertices:
@@ -2551,6 +2559,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  child: {fileID: 0}
   defaultAngle: -1.4
   initialJointLocation: {x: 0.05, y: 1}
   limbVertices:
@@ -2776,6 +2785,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  child: {fileID: 0}
   defaultAngle: 1.4
   initialJointLocation: {x: 0.05, y: 1}
   limbVertices:
@@ -3074,6 +3084,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  child: {fileID: 0}
   defaultAngle: -1.4
   initialJointLocation: {x: 0.05, y: 1}
   limbVertices:
@@ -3299,6 +3310,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  child: {fileID: 0}
   defaultAngle: -0.5
   initialJointLocation: {x: 0, y: 1.2}
   limbVertices:
