@@ -12,17 +12,17 @@ public class Ground : MonoBehaviour
     {
         DrawGround();
     }
-    
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
 
@@ -35,17 +35,27 @@ public class Ground : MonoBehaviour
 
         mesh.colors = new Color[]
         {
-            colour,
-            colour,
-            colour,
-            colour
+        colour,
+        colour,
+        colour,
+        colour
+        };
+
+        //Define UVs for texture mapping
+        mesh.uv = new Vector2[]
+        {
+        new Vector2(0, 0), // bottom-left
+        new Vector2(1, 0), // bottom-right
+        new Vector2(1, 1), // top-right
+        new Vector2(0, 1)  // top-left
         };
 
         mesh.triangles = new int[]
         {
-            0, 1, 2,  // first triangle
-            2, 3, 0   // second triangle
+        0, 1, 2, //first triangle
+        2, 3, 0  //second triangle
         };
-    }
 
+        mesh.RecalculateNormals();
+    }
 }
